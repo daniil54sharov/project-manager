@@ -1,5 +1,8 @@
 package ProjectManagerPackage;
 
+import ProjectManagerPanelPackage.ProjectManagerProjectsListPanel;
+import ProjectManagerDialogPackage.ProjectManagerCreateProjectDialog;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -17,6 +20,8 @@ public abstract class ProjectManager {
     private static final JFrame projectManagerMainFrame = new JFrame(appName);
     private static final JPanel projectManagerMainPanel = new JPanel();
     private static final JLabel projectManagerMainPanelProjectsLabel = new JLabel("Projects: ");
+    private static final ProjectManagerProjectsListPanel projectManagerProjectsListPanel = new ProjectManagerProjectsListPanel();
+
     public static JMenuBar projectManagerMenuBar = new JMenuBar();
 
     //JMenuBar items
@@ -53,6 +58,8 @@ public abstract class ProjectManager {
         //Mid screen
         projectManagerMainPanelProjectsLabel.setFont(new Font("Projects", Font.LAYOUT_LEFT_TO_RIGHT, 14));
         projectManagerMainPanel.add(projectManagerMainPanelProjectsLabel, FlowLayout.LEFT);
+        projectManagerMainPanel.add(projectManagerProjectsListPanel );
+
         projectManagerMainFrame.add(projectManagerMainPanel);
 
         //JFrame setting
@@ -95,7 +102,8 @@ public abstract class ProjectManager {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                ProjectManagerCreateProjectDialog projectManagerCreateProjectDialog = new ProjectManagerCreateProjectDialog(projectManagerMainFrame, "Create new project");
+                projectManagerCreateProjectDialog.setVisible(true);
             }
         });
     }
