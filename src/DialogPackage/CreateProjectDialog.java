@@ -1,4 +1,8 @@
 package DialogPackage;
+import MainPackage.CardPanelArrayList;
+import PanelPackage.CardPanel;
+import PanelPackage.ProjectsListPanel;
+
 import javax.swing.JFrame;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -26,7 +30,12 @@ public class CreateProjectDialog extends JDialog{
         TopPanel.add(TextAreaScrollPane);
 
         //Dialog bottom panel
-        CreateButton.addActionListener(new CreateButtonListener());
+        CreateButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CardPanelArrayList.addCardPanelToArrayList(new CardPanel(NameTextField.getText(), DescriptionTextArea.getText()));
+            }
+        });
         CancelButton.addActionListener(new CancelButtonListener(this));
 
         BottomPanel.add(CreateButton);
@@ -43,13 +52,6 @@ public class CreateProjectDialog extends JDialog{
     }
 }
 
-class CreateButtonListener implements ActionListener {
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
-}
 
 class CancelButtonListener implements ActionListener {
     CreateProjectDialog CreateProjectDialog;
