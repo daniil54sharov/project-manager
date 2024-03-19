@@ -10,17 +10,16 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.Font;
-import java.awt.FlowLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public abstract class ProjectManager {
+public class ProjectManager {
     private static final String appName = "Project manager";
     private static final JFrame MainFrame = new JFrame(appName);
     private static final JPanel MainPanel = new JPanel();
     private static final JLabel MainPanelProjectsLabel = new JLabel("Projects: ");
-    private static final ProjectsListPanel ProjectsListPanel = new ProjectsListPanel();
+    public static final ProjectsListPanel projectsListPanel = new ProjectsListPanel();
 
     public static JMenuBar MenuBar = new JMenuBar();
 
@@ -57,8 +56,8 @@ public abstract class ProjectManager {
 
         //Mid screen
         MainPanelProjectsLabel.setFont(new Font("Projects", Font.LAYOUT_LEFT_TO_RIGHT, 14));
-        MainPanel.add(MainPanelProjectsLabel, FlowLayout.LEFT);
-        MainPanel.add(ProjectsListPanel);
+        MainPanel.add(MainPanelProjectsLabel);
+        MainPanel.add(projectsListPanel);
 
         MainFrame.add(MainPanel);
 

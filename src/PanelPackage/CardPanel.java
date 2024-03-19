@@ -1,4 +1,6 @@
 package PanelPackage;
+import MainPackage.CardPanelArrayList;
+
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -14,11 +16,11 @@ public class CardPanel extends JPanel{
 
         NameLabel = new JLabel(Name);
         DescriptionLabel = new JLabel(Description);
-        EditButton.addActionListener(new EditButtonListener());
-        DeleteButton.addActionListener(new DeleteButtonListener());
 
         EditButton = new JButton("Edit");
         DeleteButton = new JButton("Delete");
+        EditButton.addActionListener(new EditButtonListener());
+        DeleteButton.addActionListener(new DeleteButtonListener(this));
 
         this.add(NameLabel);
         this.add(DescriptionLabel);
@@ -36,9 +38,12 @@ class EditButtonListener implements ActionListener {
 }
 
 class DeleteButtonListener implements ActionListener {
-
+    private CardPanel cardPanel;
+    public DeleteButtonListener(CardPanel cardPanel) {
+        this.cardPanel = cardPanel;
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        CardPanelArrayList.removeCardPanelFromArrayList(cardPanel);
     }
 }
